@@ -12,6 +12,8 @@
 		8097065821674F6700185E82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8097065621674F6700185E82 /* Main.storyboard */; };
 		8097065A21674F6C00185E82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8097065921674F6C00185E82 /* Assets.xcassets */; };
 		8097065D21674F6C00185E82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8097065B21674F6C00185E82 /* LaunchScreen.storyboard */; };
+		80970665216750C500185E82 /* MobileDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80970664216750C500185E82 /* MobileDevice.swift */; };
+		809706672167A53000185E82 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809706662167A53000185E82 /* LocationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		8097065921674F6C00185E82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8097065C21674F6C00185E82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8097065E21674F6C00185E82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80970664216750C500185E82 /* MobileDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileDevice.swift; sourceTree = "<group>"; };
+		809706662167A53000185E82 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				8097065221674F6700185E82 /* AppDelegate.swift */,
 				8097065421674F6700185E82 /* ViewController.swift */,
+				809706662167A53000185E82 /* LocationService.swift */,
+				80970664216750C500185E82 /* MobileDevice.swift */,
 				8097065621674F6700185E82 /* Main.storyboard */,
 				8097065921674F6C00185E82 /* Assets.xcassets */,
 				8097065B21674F6C00185E82 /* LaunchScreen.storyboard */,
@@ -96,6 +102,11 @@
 				TargetAttributes = {
 					8097064E21674F6700185E82 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -135,7 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80970665216750C500185E82 /* MobileDevice.swift in Sources */,
 				8097065521674F6700185E82 /* ViewController.swift in Sources */,
+				809706672167A53000185E82 /* LocationService.swift in Sources */,
 				8097065321674F6700185E82 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
