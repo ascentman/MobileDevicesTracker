@@ -47,7 +47,5 @@
 	</array>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>sending location updates is required for this phone</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>sending location updates is required for this phone</string>
 </dict>
 </plist>

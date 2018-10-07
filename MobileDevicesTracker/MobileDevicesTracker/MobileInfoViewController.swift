@@ -10,15 +10,13 @@ import UIKit
 import MapKit
 
 // назва - default треба замінити
-class ViewController: UIViewController { //final
-
-    @IBOutlet weak var map: MKMapView! //private
+final class MobileInfoViewController: UIViewController {
 
     // тут краще мати обєкт а не обєкт і відразу запит
     // тобі треба запит зробити на viewDidLoad і дотого ж треба отримати результ того що користувач вибрав - completion(_ accessGranted: Bool, error: Error?) або шось таке
     private var currentLocation = LocationService.shared.requestLocation()
 
-    // MARK: - LifeCYcle
+    // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,13 +50,6 @@ class ViewController: UIViewController { //final
         // + можна ж продебажити і глянути чого тут 0,0
         print(currentLocation.latitude, currentLocation.longitude) // first time always (0,0). Need some observer or I don't know(
         self.currentLocation = LocationService.shared.requestLocation()
-
-        //хіба була вимога показувати карту? чи вимога була отримати координати періодично в bg?
-        // не треба нічого додаткового - принаймні на першому кроці - бо зараз те шо треба - не робить як треба і ще й щось є чого не треба
-        // :(
-        let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01,longitudeDelta: 0.01) // нашо це?
-        let region: MKCoordinateRegion = MKCoordinateRegion(center: currentLocation, span: span)  // нашо це?
-        map.setRegion(region, animated: true)
-        self.map.showsUserLocation = true
+        print(self.currentLocation)
     }
 }

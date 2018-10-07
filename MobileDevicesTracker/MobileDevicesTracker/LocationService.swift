@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 // можна ж додати делегат і потім його обробити у контролері типу
-protocol LocationServiceDelegatel: class {
+protocol LocationServiceDelegate: class {
     func didGetUserLocationUpdate(_ userLocation: CLLocation)
     func didGetError(_ error: Error)
 
@@ -54,24 +54,15 @@ final class LocationService: NSObject {
     // MARK: - Private
     
     private func setupLocationManager(_ locationManager: CLLocationManager) {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest // нам дійсно треба best? чи для статистики може вистачити kCLLocationAccuracyHundredMeters
-
-//        locationManager.distanceFilter // також треба для оптимізації
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation() // треба робити тільки після того як ти вже впевнений шо достпу до локації наданий - інакше воно не робитиме
-
-//CLLocationManager.authorizationStatus() - поверне наявний статус і якшо він дозволений то не треба питати доступ
-
-    // в тебе deployment target 12 - нащо перевіряти це - просто тупо копі-паст - так треба ж думати нашо коден рядок....
-        if #available(iOS 9, *) {
-            locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.distanceFilter = 500
+        if CLLocationManager.authorizationStatus() != .authorizedAlways
+        {
+            locationManager.requestAlwaysAuthorization()
+        } else {
+            locationManager.startUpdatingLocation()
         }
     }
-
-    // privacy field in plist - то шоб наверняка - обидва варіанти, можливо один включає інший і обидва варіанти не потрібні - чи тут знову підхід - "робить - не чіпати, розбиратися не треба"
-    //я ж кинув документацію - там все конкртено описано....
-    // засмутив перевіряючого ти :(
-
 }
 
 // MARK: - Extensions
