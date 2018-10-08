@@ -45,7 +45,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>sdf</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>sending location updates is required for this phone</string>
+	<string>sdf</string>
 </dict>
 </plist>

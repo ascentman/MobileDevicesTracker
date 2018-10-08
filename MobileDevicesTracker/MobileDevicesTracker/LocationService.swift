@@ -9,59 +9,68 @@
 import Foundation
 import CoreLocation
 
-// можна ж додати делегат і потім його обробити у контролері типу
 protocol LocationServiceDelegate: class {
-    func didGetUserLocationUpdate(_ userLocation: CLLocation)
+    func didGetUserLocationUpdate(_ userLocation: Coordinates)
     func didGetError(_ error: Error)
-
 }
 
-final class LocationService: NSObject {
+enum LocationAccessType {
+    
+    case always
+    case whenInUse
+    
+    fileprivate var requestLocationType: CLAuthorizationStatus? {
+        switch self {
+        case .always:
+            return CLAuthorizationStatus.authorizedAlways
+        case .whenInUse:
+            return CLAuthorizationStatus.authorizedWhenInUse
+        }
+    }
+}
 
-    weak var delegate: LocationServiceDelegate?
+
+final class LocationService: NSObject {
     
     static let shared = LocationService()
+    weak var delegate: LocationServiceDelegate?
     private let locationManager = CLLocationManager()
-    private var coordinates: CLLocationCoordinate2D?
+    private var coordinates: Coordinates?
 
     // MARK: - LifeCycle
     
     private override init() {
         super.init()
-
         locationManager.delegate = self
-
-        setupLocationManager(locationManager)
-    }
-
-    // треба метод для запиту дозволу на локацію ОКРЕМО
-    // є метод делагут для отримання feedback
-    //    optional public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
-
-    //  якшо прямо так як ти робиш в init - тоді ти не контролюєш цей момент взагалі і запит відразу виконується як створюєш обєкт, а що робити коли треба по натисканню кнопки показати попап - з такою логікою не вийде
-    // короч окремий метод з completion
-    
-
-    func requestLocation() -> CLLocationCoordinate2D {
-        locationManager.requestLocation()
-        if let coordinates = coordinates {
-            return coordinates
-        }
-        // а тут і причина чого ти 0,0 отримуєш - бо coordinates nil адже треба певний час на отримання локаціїї
-        return CLLocationCoordinate2D(latitude: 0, longitude: 0)
     }
     
-    // MARK: - Private
+    private var requestAccessCompletion: ((Bool) -> ())?
+    private var accessType: LocationAccessType = .always
     
-    private func setupLocationManager(_ locationManager: CLLocationManager) {
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.distanceFilter = 500
-        if CLLocationManager.authorizationStatus() != .authorizedAlways
-        {
-            locationManager.requestAlwaysAuthorization()
+    func requestAccessToLocation(_ accessType: LocationAccessType = .always, completion: ((Bool) -> ())? = nil) {
+        
+        self.accessType = accessType
+        
+        if CLLocationManager.authorizationStatus() == accessType.requestLocationType {
+            completion?(true)
         } else {
-            locationManager.startUpdatingLocation()
+            requestAccessCompletion = completion
+            assert(locationManager.delegate != nil, "invalid process")
+            
+            switch accessType {
+            case .always :
+                locationManager.requestAlwaysAuthorization()
+            case .whenInUse:
+                locationManager.requestWhenInUseAuthorization()
+
+            }
         }
+    }
+    func startLocationTracking() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.showsBackgroundLocationIndicator = true
+        locationManager.startUpdatingLocation()
     }
 }
 
@@ -73,10 +82,24 @@ extension LocationService: CLLocationManagerDelegate {
         guard let mostRecentLocation = locations.last else {
             return
         }
-        coordinates = mostRecentLocation.coordinate
+        
+        coordinates = Coordinates(latitude: mostRecentLocation.coordinate.latitude,
+                                  longitude: mostRecentLocation.coordinate.longitude)
+        
+        if let coordinates = coordinates {
+            self.delegate?.didGetUserLocationUpdate(coordinates)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .notDetermined {
+            return
+        }
+        requestAccessCompletion?(status == accessType.requestLocationType)
+        requestAccessCompletion = nil
     }
 }

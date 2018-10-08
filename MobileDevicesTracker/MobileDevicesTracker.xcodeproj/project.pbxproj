@@ -14,6 +14,7 @@
 		8097065D21674F6C00185E82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8097065B21674F6C00185E82 /* LaunchScreen.storyboard */; };
 		80970665216750C500185E82 /* MobileDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80970664216750C500185E82 /* MobileDevice.swift */; };
 		809706672167A53000185E82 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809706662167A53000185E82 /* LocationService.swift */; };
+		80970669216B6D7200185E82 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80970668216B6D7200185E82 /* Coordinates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		8097065E21674F6C00185E82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80970664216750C500185E82 /* MobileDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileDevice.swift; sourceTree = "<group>"; };
 		809706662167A53000185E82 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		80970668216B6D7200185E82 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				8097065221674F6700185E82 /* AppDelegate.swift */,
+				80970668216B6D7200185E82 /* Coordinates.swift */,
 				8097065421674F6700185E82 /* MobileInfoViewController.swift */,
 				809706662167A53000185E82 /* LocationService.swift */,
 				80970664216750C500185E82 /* MobileDevice.swift */,
@@ -150,6 +153,7 @@
 				8097065521674F6700185E82 /* MobileInfoViewController.swift in Sources */,
 				809706672167A53000185E82 /* LocationService.swift in Sources */,
 				8097065321674F6700185E82 /* AppDelegate.swift in Sources */,
+				80970669216B6D7200185E82 /* Coordinates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +302,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 34UQ9VN4VQ;
 				INFOPLIST_FILE = MobileDevicesTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,6 +321,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 34UQ9VN4VQ;
 				INFOPLIST_FILE = MobileDevicesTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
