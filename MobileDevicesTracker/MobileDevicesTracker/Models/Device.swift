@@ -14,6 +14,7 @@ class Device {
     var manufactoring: String
     var model: String
     var os: String
+    var name: String
     private var screenResolution: String
     private var screenRatio: String
     var uuid: String
@@ -34,6 +35,7 @@ class Device {
         guard let manufactoring = value["manufactoring"] as? String,
             let model = value["model"] as? String,
             let os = value["OS"] as? String,
+            let name = value["name"] as? String,
             let screenResolution = value["Screen resolution"] as? String,
             let screenRatio = value["Screen ratio"] as? String,
             let uuid = value["UUID"] as? String,
@@ -53,6 +55,7 @@ class Device {
         self.manufactoring = manufactoring
         self.model = model
         self.os = os
+        self.name = name
         self.screenResolution = screenResolution
         self.screenRatio = screenRatio
         self.uuid = uuid
@@ -73,6 +76,7 @@ class Device {
             "manufactoring": manufactoring,
             "model": model,
             "os": os,
+            "name" : name,
             "screenResolution" : screenResolution,
             "screenRatio" : screenRatio,
             "uuid" : uuid,

@@ -64,94 +64,61 @@ final class MobileDeviceInfo {
         return UIDevice.current.model
     }
     
-    private var model: DeviceTypeModel {
-        let name = UIDevice.current.name
-        switch name {
-        case "iPod Touch 5":
-            return .iPod5
-        case "iPod Touch 6":
-            return .iPod6
-        case "iPhone 4":
-            return .iPhone4
-        case "iPhone 4s":
-            return .iPhone4S
-        case "iPhone 5":
-            return .iPhone5
-        case "iPhone 5c":
-            return .iPhone5C
-        case "iPhone 5s":
-            return .iPhone5S
-        case "iPhone 5se":
-            return .iPhoneSE
-        case "iPhone 6":
-            return .iPhone6
-        case "iPhone 6 Plus":
-            return .iPhone6Plus
-        case "iPhone 6s":
-            return .iPhone6S
-        case "iPhone 6s Plus":
-            return .iPhone6SPlus
-        case "iPhone 7":
-            return .iPhone7
-        case "iPhone 7 Plus":
-            return .iPhone7Plus
-        case "iPad 2":
-            return .iPad2
-        case "iPad 3":
-            return .iPad3
-        case "iPad 4":
-            return .iPad4
-        case "iPad Air":
-            return .iPadAir
-        case "iPad Air 2":
-            return .iPadAir2
-        case "iPad Mini":
-            return .iPadMini
-        case "iPad Mini 2":
-            return .iPadMini2
-        case "iPad Mini 3":
-            return .iPadMini3
-        case "iPad Mini 4":
-            return .iPadMini4
-        case "iPad Pro":
-            return .iPadPro
-        case "Apple TV":
-            return .appleTV
-        case "iPhone 8":
-            return .iPhone8
-        case "iPhone 8 Plus":
-            return .iPhone8Plus
-        case "iPhone X":
-            return .iPhoneX
-        case "iPhone XR":
-            return .iPhoneXR
-        case "iPhone XS":
-            return .iPhoneXS
-        case "iPhone XS Max":
-            return .iPhoneXSMax
-        case "iPad 5":
-            return .iPad5
-        case "iPad Pro 9.7 Inch":
-            return .iPadPro9Inch
-        case "iPad Pro 12.9 Inch":
-            return .iPadPro12Inch
-        case "iPad Pro 12.9 Inch 2. Generation":
-            return .iPadPro12Inch2
-        case "iPad Pro 10.5 Inch":
-            return .iPadPro10Inch
-        case "Apple TV 4K":
-            return .appleTV4k
-        case "HomePod":
-            return .homePad
-        case "Simulator":
-            return .simulator
-            
-        default:
-            return .unknown
+    var modelName: String {
+        var machineString: String = ""
+        
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        machineString = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        switch machineString {
+        case "iPod5,1":                                 return "iPod Touch 5"
+        case "iPod7,1":                                 return "iPod Touch 6"
+        case "iPhone3,1", "iPhone3,2", "iPhone3,3":     return "iPhone 4"
+        case "iPhone4,1":                               return "iPhone 4s"
+        case "iPhone5,1", "iPhone5,2":                  return "iPhone 5"
+        case "iPhone5,3", "iPhone5,4":                  return "iPhone 5c"
+        case "iPhone6,1", "iPhone6,2":                  return "iPhone 5s"
+        case "iPhone7,2":                               return "iPhone 6"
+        case "iPhone7,1":                               return "iPhone 6 Plus"
+        case "iPhone8,1":                               return "iPhone 6s"
+        case "iPhone8,2":                               return "iPhone 6s Plus"
+        case "iPhone8,4":                               return "iPhone 5se"
+        case "iPhone9,1":                               return "iPhone 7"
+        case "iPhone9,2", "iPhone9,4":                  return "iPhone 7 Plus"
+        case "iPhone10,1", "iPhone10,4":                return "iPhone 8"
+        case "iPhone10,2", "iPhone10,5":                return "iPhone 8 Plus"
+        case "iPhone10,3", "iPhone10,6":                return "iPhone X"
+        case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":return "iPad 2"
+        case "iPad3,1", "iPad3,2", "iPad3,3":           return "iPad 3"
+        case "iPad3,4", "iPad3,5", "iPad3,6":           return "iPad 4"
+        case "iPad4,1", "iPad4,2", "iPad4,3":           return "iPad Air"
+        case "iPad5,3", "iPad5,4":                      return "iPad Air 2"
+        case "iPad6,11", "iPad6,12":                    return "iPad 5"
+        case "iPad2,5", "iPad2,6", "iPad2,7":           return "iPad Mini"
+        case "iPad4,4", "iPad4,5", "iPad4,6":           return "iPad Mini 2"
+        case "iPad4,7", "iPad4,8", "iPad4,9":           return "iPad Mini 3"
+        case "iPad5,1", "iPad5,2":                      return "iPad Mini 4"
+        case "iPad6,3", "iPad6,4":                      return "iPad Pro 9.7 Inch"
+        case "iPad6,7", "iPad6,8":                      return "iPad Pro 12.9 Inch"
+        case "iPad7,1", "iPad7,2":                      return "iPad Pro 12.9 Inch 2. Generation"
+        case "iPad7,3", "iPad7,4":                      return "iPad Pro 10.5 Inch"
+        case "AppleTV5,3":                              return "Apple TV"
+        case "AppleTV6,2":                              return "Apple TV 4K"
+        case "AudioAccessory1,1":                       return "HomePod"
+        case "i386", "x86_64":                          return "Simulator"
+        default:                                        return machineString
         }
     }
     
-    private var OS: String {
+    private var name: String {
+        return UIDevice.current.name
+    }
+    
+    private var os: String {
         return UIDevice.current.systemName
     }
     
@@ -166,19 +133,22 @@ final class MobileDeviceInfo {
                                                .iPhone7, .iPhone7Plus, .iPhone8, .iPhone8Plus,
                                                .iPhoneX, .iPhoneXS, .iPhoneXSMax, .iPhoneXR]
         let ipads: [DeviceTypeModel] = [.iPad2, .iPad3, .iPad4, .iPad5,
-                                          .iPadAir, .iPadAir2,
-                                          .iPadMini, .iPadMini2, .iPadMini3, .iPadMini4,
-                                          .iPadPro, .iPadPro9Inch, .iPadPro10Inch, .iPadPro12Inch, .iPadPro12Inch2]
-        switch model {
-        case let model where oldIphones.contains(model):
-            return "3:2"
-        case let model where ipads.contains(model):
-            return "4:3"
-        case let model where newerIphones.contains(model):
-            return "16:9"
-        default:
-             return "unknown"
+                                        .iPadAir, .iPadAir2,
+                                        .iPadMini, .iPadMini2, .iPadMini3, .iPadMini4,
+                                        .iPadPro, .iPadPro9Inch, .iPadPro10Inch, .iPadPro12Inch, .iPadPro12Inch2]
+        if let model = DeviceTypeModel(rawValue: self.modelName) {
+            switch model {
+            case let model where oldIphones.contains(model):
+                return "3:2"
+            case let model where ipads.contains(model):
+                return "4:3"
+            case let model where newerIphones.contains(model):
+                return "16:9"
+            default:
+                break
+            }
         }
+        return "unknown"
     }
     
     // uniquely identifies a device to the app’s vendor
@@ -193,8 +163,9 @@ final class MobileDeviceInfo {
     func getMobileDeviceInfo() -> [String : Any] {
         let dictInfo: [String : Any] = [
             "manufactoring" : self.manufactoring,
-            "model" : self.model.rawValue,
-            "OS" : self.OS,
+            "model" : self.modelName,
+            "OS" : self.os,
+            "name" : self.name,
             "Screen resolution" : self.screenResolution,
             "Screen ratio" : self.screenRatio,
             "UUID" : self.uniqueId,
@@ -209,7 +180,6 @@ final class MobileDeviceInfo {
             "Department or Project device" : "",
             "Responsible person" : ""
         ]
-        
         return dictInfo
     }
     /**
