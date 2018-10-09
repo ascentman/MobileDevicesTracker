@@ -8,10 +8,15 @@
 
 import UIKit
 
-final class MobileInfoViewController: UIViewController {
+final class MobileInfoViewController: UITableViewController {
     
     private var newDevice: Device?
     private var captureDate: CapturedDate?
+    
+    @IBOutlet weak var manufacturing: UILabel!
+    @IBOutlet weak var model: UILabel!
+    @IBOutlet weak var os: UILabel!
+    
     
     // MARK: - LifeCycle
 
@@ -34,6 +39,8 @@ final class MobileInfoViewController: UIViewController {
         }
         
         FirebaseService.shared.loadDataFromDb(basedOn: newDevice)
+        
+        FirebaseService.shared.updateTableView()
     
         LocationService.shared.delegate = self
         /*

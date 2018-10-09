@@ -67,4 +67,13 @@ final class FirebaseService {
 //            }
 //        }
 //    }
+    
+    func updateTableView() {
+        deviceRef.observe(.value) { (snapshot) in
+            guard let dict = snapshot.value as? [String : Any] else {
+                return
+            }
+            print(dict)
+        }
+    }
 }
