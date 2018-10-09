@@ -1,0 +1,6 @@
+framework module Pods_MobileDevicesTracker {
+  umbrella header "Pods-MobileDevicesTracker-umbrella.h"
+
+  export *
+  module * { export * }
+}

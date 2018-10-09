@@ -1,0 +1,10 @@
+platform :ios, '10.0'
+
+target 'MobileDevicesTracker' do
+  use_frameworks!
+  inhibit_all_warnings!
+
+pod 'Firebase/Core'
+pod 'Firebase/Database'
+
+end

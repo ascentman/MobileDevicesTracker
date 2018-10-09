@@ -7,17 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77CCEF72AFFD0964F5458CFC /* Pods_MobileDevicesTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBC7B114D8BE72163B9370C1 /* Pods_MobileDevicesTracker.framework */; };
+		80016039216B78DE002F04BB /* DeviceLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80016038216B78DE002F04BB /* DeviceLocations.swift */; };
+		8001603C216B93CA002F04BB /* CapturedDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8001603B216B93CA002F04BB /* CapturedDate.swift */; };
+		80016040216C743C002F04BB /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8001603F216C743C002F04BB /* Device.swift */; };
+		80016042216C888F002F04BB /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80016041216C888F002F04BB /* FirebaseService.swift */; };
+		80016044216C8ABF002F04BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80016043216C8ABF002F04BB /* GoogleService-Info.plist */; };
 		8097065321674F6700185E82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8097065221674F6700185E82 /* AppDelegate.swift */; };
 		8097065521674F6700185E82 /* MobileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8097065421674F6700185E82 /* MobileInfoViewController.swift */; };
 		8097065821674F6700185E82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8097065621674F6700185E82 /* Main.storyboard */; };
 		8097065A21674F6C00185E82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8097065921674F6C00185E82 /* Assets.xcassets */; };
 		8097065D21674F6C00185E82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8097065B21674F6C00185E82 /* LaunchScreen.storyboard */; };
-		80970665216750C500185E82 /* MobileDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80970664216750C500185E82 /* MobileDevice.swift */; };
+		80970665216750C500185E82 /* MobileDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80970664216750C500185E82 /* MobileDeviceInfo.swift */; };
 		809706672167A53000185E82 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809706662167A53000185E82 /* LocationService.swift */; };
 		80970669216B6D7200185E82 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80970668216B6D7200185E82 /* Coordinates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C5801AF17B32629C02B47BE /* Pods-MobileDevicesTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileDevicesTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileDevicesTracker/Pods-MobileDevicesTracker.release.xcconfig"; sourceTree = "<group>"; };
+		5767B019946621ECCBDF3751 /* Pods-MobileDevicesTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileDevicesTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileDevicesTracker/Pods-MobileDevicesTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		80016038216B78DE002F04BB /* DeviceLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocations.swift; sourceTree = "<group>"; };
+		8001603B216B93CA002F04BB /* CapturedDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedDate.swift; sourceTree = "<group>"; };
+		8001603F216C743C002F04BB /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		80016041216C888F002F04BB /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		80016043216C8ABF002F04BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8097064F21674F6700185E82 /* MobileDevicesTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileDevicesTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8097065221674F6700185E82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8097065421674F6700185E82 /* MobileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileInfoViewController.swift; sourceTree = "<group>"; };
@@ -25,9 +38,10 @@
 		8097065921674F6C00185E82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8097065C21674F6C00185E82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8097065E21674F6C00185E82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80970664216750C500185E82 /* MobileDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileDevice.swift; sourceTree = "<group>"; };
+		80970664216750C500185E82 /* MobileDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileDeviceInfo.swift; sourceTree = "<group>"; };
 		809706662167A53000185E82 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		80970668216B6D7200185E82 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		BBC7B114D8BE72163B9370C1 /* Pods_MobileDevicesTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileDevicesTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +49,58 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77CCEF72AFFD0964F5458CFC /* Pods_MobileDevicesTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48BC3BB5EADBB832877F3BC6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5767B019946621ECCBDF3751 /* Pods-MobileDevicesTracker.debug.xcconfig */,
+				2C5801AF17B32629C02B47BE /* Pods-MobileDevicesTracker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8001603A216B9382002F04BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				80970668216B6D7200185E82 /* Coordinates.swift */,
+				80016038216B78DE002F04BB /* DeviceLocations.swift */,
+				8001603F216C743C002F04BB /* Device.swift */,
+				8001603B216B93CA002F04BB /* CapturedDate.swift */,
+				80970664216750C500185E82 /* MobileDeviceInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		80016045216C9420002F04BB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				809706662167A53000185E82 /* LocationService.swift */,
+				80016041216C888F002F04BB /* FirebaseService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		80016046216C942D002F04BB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8097065421674F6700185E82 /* MobileInfoViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		8097064621674F6600185E82 = {
 			isa = PBXGroup;
 			children = (
 				8097065121674F6700185E82 /* MobileDevicesTracker */,
 				8097065021674F6700185E82 /* Products */,
+				48BC3BB5EADBB832877F3BC6 /* Pods */,
+				A0249BAF0BC53E99A820ECAC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,16 +116,24 @@
 			isa = PBXGroup;
 			children = (
 				8097065221674F6700185E82 /* AppDelegate.swift */,
-				80970668216B6D7200185E82 /* Coordinates.swift */,
-				8097065421674F6700185E82 /* MobileInfoViewController.swift */,
-				809706662167A53000185E82 /* LocationService.swift */,
-				80970664216750C500185E82 /* MobileDevice.swift */,
+				8001603A216B9382002F04BB /* Models */,
+				80016046216C942D002F04BB /* Controllers */,
+				80016045216C9420002F04BB /* Services */,
 				8097065621674F6700185E82 /* Main.storyboard */,
 				8097065921674F6C00185E82 /* Assets.xcassets */,
 				8097065B21674F6C00185E82 /* LaunchScreen.storyboard */,
+				80016043216C8ABF002F04BB /* GoogleService-Info.plist */,
 				8097065E21674F6C00185E82 /* Info.plist */,
 			);
 			path = MobileDevicesTracker;
+			sourceTree = "<group>";
+		};
+		A0249BAF0BC53E99A820ECAC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BBC7B114D8BE72163B9370C1 /* Pods_MobileDevicesTracker.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,9 +143,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8097066121674F6C00185E82 /* Build configuration list for PBXNativeTarget "MobileDevicesTracker" */;
 			buildPhases = (
+				0F2FECBE29F3CD643F9EBEE6 /* [CP] Check Pods Manifest.lock */,
 				8097064B21674F6700185E82 /* Sources */,
 				8097064C21674F6700185E82 /* Frameworks */,
 				8097064D21674F6700185E82 /* Resources */,
+				426B1BD99834EAE15F14990F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,18 +204,74 @@
 				8097065D21674F6C00185E82 /* LaunchScreen.storyboard in Resources */,
 				8097065A21674F6C00185E82 /* Assets.xcassets in Resources */,
 				8097065821674F6700185E82 /* Main.storyboard in Resources */,
+				80016044216C8ABF002F04BB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F2FECBE29F3CD643F9EBEE6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MobileDevicesTracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		426B1BD99834EAE15F14990F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MobileDevicesTracker/Pods-MobileDevicesTracker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobileDevicesTracker/Pods-MobileDevicesTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8097064B21674F6700185E82 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80970665216750C500185E82 /* MobileDevice.swift in Sources */,
+				80016039216B78DE002F04BB /* DeviceLocations.swift in Sources */,
+				8001603C216B93CA002F04BB /* CapturedDate.swift in Sources */,
+				80016040216C743C002F04BB /* Device.swift in Sources */,
+				80970665216750C500185E82 /* MobileDeviceInfo.swift in Sources */,
 				8097065521674F6700185E82 /* MobileInfoViewController.swift in Sources */,
+				80016042216C888F002F04BB /* FirebaseService.swift in Sources */,
 				809706672167A53000185E82 /* LocationService.swift in Sources */,
 				8097065321674F6700185E82 /* AppDelegate.swift in Sources */,
 				80970669216B6D7200185E82 /* Coordinates.swift in Sources */,
@@ -297,6 +418,7 @@
 		};
 		8097066221674F6C00185E82 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5767B019946621ECCBDF3751 /* Pods-MobileDevicesTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -316,6 +438,7 @@
 		};
 		8097066321674F6C00185E82 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C5801AF17B32629C02B47BE /* Pods-MobileDevicesTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
