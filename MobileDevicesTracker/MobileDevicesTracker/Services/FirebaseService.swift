@@ -15,65 +15,50 @@ final class FirebaseService {
     private init() {}
     
     let devicesRef = Database.database().reference(withPath: "Devices")
-    let deviceRef = Database.database().reference(withPath: "Devices/Device")
-    let datesRef = Database.database().reference(withPath: "Devices/Device/Dates")
-    let dateRef = Database.database().reference(withPath: "Devices/Device/Dates/Date")
-    let locationRef = Database.database().reference(withPath: "Devices/Device/Dates/Locations")
+    var ref: DatabaseReference?
     
     @discardableResult class func registerInApplication(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         return true
     }
     
-    func loadDataFromDb(basedOn device: Device?) {
-        guard let device = device else {
+    func loadDataFromDb() {
+        
+        let modelInfo = MobileDeviceInfo()
+        guard let device = Device(with: modelInfo.getMobileDeviceInfo()) else {
             return
         }
-        
-//        devicesRef.child("Device").queryEqual(toValue: device.uuid).observeSingleEvent(of: .value) { (snapshot) in
-//            print(snapshot)
-//        }
-        
-        deviceRef.child("uuid").observe(.value) { (uuidSnap) in
-            if uuidSnap.value as? String == device.uuid {
-                print("exist!!!!!!!!!!")
-            } else {
-                print("not exist!!!!!!!!!!")
-                self.deviceRef.setValue(device.toAnyObject())
+        self.ref = devicesRef.child("\(device.uuid)")
+        if let ref = self.ref {
+            ref.observeSingleEvent(of: .value) { snapshot in
+                if snapshot.exists() {
+                    //
+                } else {
+                    ref.updateChildValues(["SystemInfo" : device.toAnyObject()])
+                }
             }
         }
     }
     
-    func updateLocations(basedOn device: Device) {
-        devicesRef.setValue(device.toAnyObject())
+    func updateLocations(basedOn newLocation: DeviceLocations) {
+        let currentDate = CapturedDate()
+        let dateString = "\(currentDate.year!):\(currentDate.month!):\(currentDate.day!)"
+
+        if let ref = self.ref {
+            let currentDateRef = ref.child("\(dateString)")
+            currentDateRef.observeSingleEvent(of: .value, with: { currentDateValue in
+                currentDateRef.childByAutoId().setValue(newLocation.toAnyObject())
+            })
+        }
     }
     
-//    func updateLocations(basedOn dates: DeviceLocations) {
-//        
-//        datesRef.observe(.value) { (snapshot) in
-//            if let snaps = snapshot.children.allObjects as? [DataSnapshot] {
-//                for child in snaps {
-//                    guard let dict = child.value as? [String : Any] else {
-//                        return
-//                    }
-//                    if dates.day == dict["day"] as? Int,
-//                        dates.month == dict["month"] as? Int,
-//                        dates.year == dict["year"] as? Int {
-//                        
-//                        let cap = CapturedDate()
-//                        cap.locations.append(dates)
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
-    func updateTableView() {
-        deviceRef.observe(.value) { (snapshot) in
-            guard let dict = snapshot.value as? [String : Any] else {
-                return
-            }
-            print(dict)
+    func saveUserData(proj: String?, resp: String?) {
+        
+        let dict = ["project" : proj,
+                    "responsiblePerson" : resp
+        ]
+        if let ref = self.ref {
+            ref.updateChildValues(["ManualInfo" : dict])
         }
     }
 }

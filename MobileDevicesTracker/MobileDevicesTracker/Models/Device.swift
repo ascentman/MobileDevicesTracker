@@ -79,18 +79,18 @@ class Device {
             "name" : name,
             "screenResolution" : screenResolution,
             "screenRatio" : screenRatio,
-            "uuid" : uuid,
-            "serialNumber" : serialNumber,
-            "macAddress" : macAddress,
-            "imei" : imei,
-            "deviceType" : deviceType,
-            "workplace" : workplace,
-            "inventoryNumber" : inventoryNumber,
-            "project" : project,
-            "sticker" : sticker,
-            "department" : department,
-            "responsiblePerson" : responsiblePerson,
-            "Dates" : dates.map({ $0.toAnyObject() })
+            "uuid" : uuid
+//            "serialNumber" : serialNumber,
+//            "macAddress" : macAddress,
+//            "imei" : imei,
+//            "deviceType" : deviceType,
+//            "workplace" : workplace,
+//            "inventoryNumber" : inventoryNumber,
+//            "project" : project,
+//            "sticker" : sticker,
+//            "department" : department,
+//            "responsiblePerson" : responsiblePerson
+            //"Dates" : dates.map({ $0.toAnyObject() })
         ]
     }
 

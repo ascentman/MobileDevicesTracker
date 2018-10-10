@@ -13,10 +13,9 @@ final class MobileInfoViewController: UITableViewController {
     private var newDevice: Device?
     private var captureDate: CapturedDate?
     
-    @IBOutlet weak var manufacturing: UILabel!
-    @IBOutlet weak var model: UILabel!
-    @IBOutlet weak var os: UILabel!
-    
+    @IBOutlet weak var systemTextView: UITextView!
+    @IBOutlet weak var respPersonTextField: UITextField!
+    @IBOutlet weak var projectTextField: UITextField!
     
     // MARK: - LifeCycle
 
@@ -31,44 +30,39 @@ final class MobileInfoViewController: UITableViewController {
             }
         }
         
-        let modelInfo = MobileDeviceInfo()
-        captureDate = CapturedDate()
-        newDevice = Device(with: modelInfo.getMobileDeviceInfo())
-        if let captureDate = captureDate {
-            newDevice?.dates.append(captureDate)
-        }
+        FirebaseService.shared.loadDataFromDb()
+        FirebaseService.shared.ref?.observe(.value, with: { (snapshot) in
+            guard let dict = snapshot.value as? [String: Any] else {
+                return
+            }
+            let jsonData = dict.dict2json()
+            self.systemTextView.text = jsonData
+        })
         
-        FirebaseService.shared.loadDataFromDb(basedOn: newDevice)
-        
-        FirebaseService.shared.updateTableView()
-    
         LocationService.shared.delegate = self
-        /*
-
-         "Device type" : "",
-         "Workplace" : "",
-         "Inventory number" : "",
-         "Project" : "",
-         "Sticker" : "",
-         "Department/Project device" : "",
-         "Responsible person" : ""
-         для цих полів треба додати буде введення інформації вручну з таблички наприклад з статичниси целами
-         */
+        respPersonTextField.delegate = self
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func savePressed(_ sender: Any) {
+        let proj = projectTextField.text
+        let resp = respPersonTextField.text
+        FirebaseService.shared.saveUserData(proj: proj, resp: resp)
     }
     
     private func updateDeviceLocationWith(coordinates: Coordinates) {
         
         let newLocation = DeviceLocations(location: coordinates)
-        self.captureDate?.locations.append(newLocation)
-        FirebaseService.shared.dateRef.setValue(self.captureDate?.appendLocation())
+        FirebaseService.shared.updateLocations(basedOn: newLocation)
     }
     
-            // check if device Info obj created and stored on firebase? if so grab it, if no create and store
-            // ask deviceInfo for selected date from new location - if yes - use it, if no create it
-            // if Captured date created - add to deviceInfo, if retrived - just grab it for use
-            // apped new location to CapturedDate
-            // store on firebase - if device in in foreground - just call method to store
-            // if in background - start UIBackground Task and store data on firease
+    // check if device Info obj created and stored on firebase? if so grab it, if no create and store
+    // ask deviceInfo for selected date from new location - if yes - use it, if no create it
+    // if Captured date created - add to deviceInfo, if retrived - just grab it for use
+    // apped new location to CapturedDate
+    // store on firebase - if device in in foreground - just call method to store
+    // if in background - start UIBackground Task and store data on firease
 }
 
 extension MobileInfoViewController: LocationServiceDelegate {
@@ -86,5 +80,31 @@ extension MobileInfoViewController: LocationServiceDelegate {
 
     func didGetError(_ error: Error) {
         print("error")
+    }
+}
+
+// MARK: - Extensions
+//TODO: move in separate files
+
+extension Dictionary {
+    var json: String {
+        let invalidJson = "Not a valid JSON"
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+            return String(bytes: jsonData, encoding: String.Encoding.utf8) ?? invalidJson
+        } catch {
+            return invalidJson
+        }
+    }
+    
+    func dict2json() -> String {
+        return json
+    }
+}
+
+extension MobileInfoViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

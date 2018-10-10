@@ -42,8 +42,6 @@ final class LocationService: NSObject {
     private override init() {
         super.init()
         locationManager.delegate = self
-//        locationManager.allowsBackgroundLocationUpdates = true
-//        locationManager.pausesLocationUpdatesAutomatically = false
     }
     
     private var requestAccessCompletion: ((Bool) -> ())?
@@ -69,9 +67,10 @@ final class LocationService: NSObject {
         }
     }
     func startLocationTracking() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.distanceFilter = 500
         locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.showsBackgroundLocationIndicator = true
+        locationManager.showsBackgroundLocationIndicator = false
         locationManager.startUpdatingLocation()
     }
 }
