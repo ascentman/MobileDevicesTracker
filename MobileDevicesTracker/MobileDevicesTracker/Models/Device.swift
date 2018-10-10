@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-class Device {
+final class Device {
 
     var manufactoring: String
     var model: String
@@ -93,9 +93,4 @@ class Device {
             //"Dates" : dates.map({ $0.toAnyObject() })
         ]
     }
-
-//    subscript (_ dateComponents) -> CapturedDate {
-//        ///
-//        return CapturedDates()
-//    }
 }

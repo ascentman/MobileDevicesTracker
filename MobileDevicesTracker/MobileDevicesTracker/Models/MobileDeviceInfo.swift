@@ -182,13 +182,4 @@ final class MobileDeviceInfo {
         ]
         return dictInfo
     }
-    /**
-     https://developer.apple.com/library/archive/releasenotes/General/WhatsNewIniOS/Articles/iOS7.html#//apple_ref/doc/uid/TP40013162-SW1
-     In iOS 7 and later, if you ask for the MAC address of an iOS device, the system returns the value 02:00:00:00:00:00. If you need to identify the device, use the identifierForVendor property of UIDevice instead.
-     
-     https://discussions.apple.com/thread/7574711?answerId=30261762022#30261762022
-     For privacy reasons, Apple doesn't want you to retrieve any device specific information such as IMEI, UDID, MAC address, serial number, etc, and has been removing support for this kind of information from the SDK for a while now. Your application will be rejected if you try to use private methods, so that is probably what they were talking about.
-     
-     The only exception is on managed devices, where MDM has access to this sort of thing
-     */
 }

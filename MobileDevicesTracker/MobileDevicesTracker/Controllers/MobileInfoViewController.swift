@@ -13,9 +13,9 @@ final class MobileInfoViewController: UITableViewController {
     private var newDevice: Device?
     private var captureDate: CapturedDate?
     
-    @IBOutlet weak var systemTextView: UITextView!
-    @IBOutlet weak var respPersonTextField: UITextField!
-    @IBOutlet weak var projectTextField: UITextField!
+    @IBOutlet private weak var systemTextView: UITextView!
+    @IBOutlet private weak var respPersonTextField: UITextField!
+    @IBOutlet private weak var projectTextField: UITextField!
     
     // MARK: - LifeCycle
 
@@ -30,7 +30,6 @@ final class MobileInfoViewController: UITableViewController {
             }
         }
         
-        FirebaseService.shared.loadDataFromDb()
         FirebaseService.shared.ref?.observe(.value, with: { (snapshot) in
             guard let dict = snapshot.value as? [String: Any] else {
                 return
@@ -45,7 +44,7 @@ final class MobileInfoViewController: UITableViewController {
     
     // MARK: - IBActions
     
-    @IBAction func savePressed(_ sender: Any) {
+    @IBAction private func savePressed(_ sender: Any) {
         let proj = projectTextField.text
         let resp = respPersonTextField.text
         FirebaseService.shared.saveUserData(proj: proj, resp: resp)
@@ -56,26 +55,14 @@ final class MobileInfoViewController: UITableViewController {
         let newLocation = DeviceLocations(location: coordinates)
         FirebaseService.shared.updateLocations(basedOn: newLocation)
     }
-    
-    // check if device Info obj created and stored on firebase? if so grab it, if no create and store
-    // ask deviceInfo for selected date from new location - if yes - use it, if no create it
-    // if Captured date created - add to deviceInfo, if retrived - just grab it for use
-    // apped new location to CapturedDate
-    // store on firebase - if device in in foreground - just call method to store
-    // if in background - start UIBackground Task and store data on firease
 }
+
+// MARK: - Extensions
 
 extension MobileInfoViewController: LocationServiceDelegate {
     func didGetUserLocationUpdate(_ userLocation: Coordinates) {
-        
         print(userLocation.latitude, userLocation.longitude)
-        
         updateDeviceLocationWith(coordinates: userLocation)
-//        let newLocation = DeviceLocations(location: userLocation)
-//
-//        let capturedDate = CapturedDate()
-//        capturedDate.locations.append(newLocation)
-        
     }
 
     func didGetError(_ error: Error) {
@@ -83,8 +70,15 @@ extension MobileInfoViewController: LocationServiceDelegate {
     }
 }
 
-// MARK: - Extensions
-//TODO: move in separate files
+extension MobileInfoViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+
+// MARK: - TODO: move to separate file
 
 extension Dictionary {
     var json: String {
@@ -99,12 +93,5 @@ extension Dictionary {
     
     func dict2json() -> String {
         return json
-    }
-}
-
-extension MobileInfoViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }

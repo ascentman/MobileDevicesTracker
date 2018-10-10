@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CapturedDate {
+final class CapturedDate {
     
     var day: Int?
     var month: Int?
@@ -36,12 +36,6 @@ class CapturedDate {
             "day": day as Any,
             "month": month as Any,
             "year": year as Any,
-        ]
-    }
-    
-    func appendLocation() -> Any {
-        return [
-            "locations" : locations.map({ $0.toAnyObject() })
         ]
     }
 }

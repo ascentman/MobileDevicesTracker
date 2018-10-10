@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Coordinates {
+final class Coordinates {
     private (set) var latitude: Double
     private (set) var longitude: Double
     

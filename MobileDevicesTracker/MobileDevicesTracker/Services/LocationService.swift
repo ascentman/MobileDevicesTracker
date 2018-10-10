@@ -29,7 +29,6 @@ enum LocationAccessType {
     }
 }
 
-
 final class LocationService: NSObject {
     
     static let shared = LocationService()
@@ -66,11 +65,13 @@ final class LocationService: NSObject {
             }
         }
     }
+    
     func startLocationTracking() {
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.distanceFilter = 500
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.showsBackgroundLocationIndicator = false
+        locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.startUpdatingLocation()
     }
 }

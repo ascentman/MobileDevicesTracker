@@ -15,10 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseService.registerInApplication(application, didFinishLaunchingWithOptions: launchOptions)
+        FirebaseService.shared.loadDataFromDb()
         return true
-    }
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {
-            print("update location in background")
     }
 }
