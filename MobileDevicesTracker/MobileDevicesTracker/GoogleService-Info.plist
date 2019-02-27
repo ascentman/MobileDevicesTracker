@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>792782074150-1vi3s0qqq1c77dcaejhqee4q03jtm3fb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.792782074150-1vi3s0qqq1c77dcaejhqee4q03jtm3fb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyApkmdSRBUrL1dnVGVcFA6_04qzpOTxPs4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>792782074150</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>work.MobileDevicesTracker</string>
+	<key>PROJECT_ID</key>
+	<string>sigmamobiletracker-da662</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sigmamobiletracker-da662.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:792782074150:ios:a086311008676d92</string>
+	<key>DATABASE_URL</key>
+	<string>https://sigmamobiletracker-da662.firebaseio.com</string>
+</dict>
+</plist>
